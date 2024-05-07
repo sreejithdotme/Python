@@ -46,8 +46,6 @@ def get_disease_variants(disease_query, data_count):
                     all_variants.append([variant, gene, n_diseases, chr_, position, consequence, alleles, score_vda])
         else:
             print("Table not found on page {}.".format(page))
-
-    # Sort by "Score vda" column in ascending order
     all_variants.sort(key=lambda x: float(x[-1]))
 
     return all_variants
@@ -60,8 +58,6 @@ def export_to_csv(data, filename):
 
 def search_disease():
     disease_query = input("Enter disease UMLS CUI ID : ")
-    
-    # Select number of data to fetch
     print("Select the number of output data:")
     print("1. 25")
     print("2. 50")
@@ -83,14 +79,8 @@ def search_disease():
     else:
         print("Invalid choice. Using default value of 25.")
         data_count = 25
-
-    # Retrieve disease variants
     all_variants = get_disease_variants(disease_query, data_count)
-
-    # Export data to CSV file
     filename = f"{disease_query}_variants.csv"
     export_to_csv(all_variants, filename)
     print(f"Data exported to {filename} successfully!")
-
-# Start the search process
 search_disease()
