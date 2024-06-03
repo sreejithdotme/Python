@@ -28,7 +28,7 @@ def get_disease_variants(disease_query, data_count):
             rows = table.find_all("tr")
             for row in rows[1:]:
                 cells = row.find_all("td")
-                if len(cells) >= 14:  # Adjusted the length check for additional columns
+                if len(cells) >= 14:
                     variant_cell = cells[0]
                     variant_link = variant_cell.find("a")
                     if variant_link:
@@ -38,11 +38,11 @@ def get_disease_variants(disease_query, data_count):
                         variant = "N/A"
                     gene = cells[3].text.strip() if cells[3].text.strip() else "MISSING GENE"
                     n_diseases = cells[4].text.strip()
-                    chr_ = cells[5].text.strip()  # Changed chr to chr_ to avoid conflict with built-in function
+                    chr_ = cells[5].text.strip()
                     position = cells[8].text.strip()
                     consequence = cells[9].text.strip()
                     alleles = cells[10].text.strip()
-                    score_vda = cells[14].text.strip()  # New: Extract "Score vda"
+                    score_vda = cells[14].text.strip() 
                     all_variants.append([variant, gene, n_diseases, chr_, position, consequence, alleles, score_vda])
         else:
             print("Table not found on page {}.".format(page))
