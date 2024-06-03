@@ -48,7 +48,6 @@ def get_disease_variants(disease_query, data_count):
         else:
             print("Table not found on page {}.".format(page))
 
-    # Sort by "Score vda" column in ascending order
     all_variants.sort(key=lambda x: float(x[-1]), reverse=True)
 
     return all_variants
@@ -84,7 +83,6 @@ def search_diseases_from_file(input_filename, data_count):
         print("All CSV files processed. Completed!")
         sys.exit()
 
-    # Export IDs with no data to a separate CSV file
     if no_data_ids:
         with open("No_Data_Found.csv", 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
@@ -92,7 +90,6 @@ def search_diseases_from_file(input_filename, data_count):
             writer.writerows([[umls_id] for umls_id in no_data_ids])
 
 if __name__ == "__main__":
-    # Select number of output data
     print("Select the number of output data:")
     print("1. 25")
     print("2. 50")
@@ -114,7 +111,5 @@ if __name__ == "__main__":
     else:
         print("Invalid choice. Using default value of 25.")
         data_count = 25
-
-    # Start the search process
     input_filename = "umcl_id_1.csv"
     search_diseases_from_file(input_filename, data_count)
